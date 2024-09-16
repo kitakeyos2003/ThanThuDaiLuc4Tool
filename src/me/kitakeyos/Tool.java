@@ -116,8 +116,9 @@ public class Tool {
                 decodeImageResource(file, basePath, outputFolderPath, "png");
             }
         } else {
-            logger.warning("Phần mở rộng không xác định: " + extension + ". Đang sao chép tệp.");
-            copyFile(file, basePath, outputFolderPath);
+            logger.warning("Phần mở rộng không xác định: " + extension + ".");
+//            logger.warning("Phần mở rộng không xác định: " + extension + ". Đang sao chép tệp.");
+//            copyFile(file, basePath, outputFolderPath);
         }
     }
 
@@ -238,9 +239,9 @@ public class Tool {
         Path outputFilePath = Paths.get(outputFolder).toAbsolutePath().resolve(relativePath.getParent()).resolve(outputFileName);
 
         Files.createDirectories(outputFilePath.getParent());
-        logger.fine("Ghi dữ liệu đến tệp: " + outputFilePath.toString());
+        logger.fine("Ghi dữ liệu đến tệp: " + outputFilePath);
         Files.write(outputFilePath, data);
-        logger.info("Đã ghi tệp: " + outputFilePath.toString());
+        logger.info("Đã ghi tệp: " + outputFilePath);
     }
 
     private static void copyFile(File inputFile, Path basePath, String outputFolder) throws IOException {
@@ -249,9 +250,9 @@ public class Tool {
         Path outputFilePath = Paths.get(outputFolder).toAbsolutePath().resolve(relativePath);
 
         Files.createDirectories(outputFilePath.getParent());
-        logger.fine("Sao chép tệp từ " + inputPath.toString() + " đến " + outputFilePath.toString());
+        logger.fine("Sao chép tệp từ " + inputPath + " đến " + outputFilePath);
         Files.copy(inputPath, outputFilePath, StandardCopyOption.REPLACE_EXISTING);
-        logger.info("Đã sao chép tệp: " + outputFilePath.toString());
+        logger.info("Đã sao chép tệp: " + outputFilePath);
     }
 
     private static boolean startsWith(byte[] data, byte[] prefix) {
